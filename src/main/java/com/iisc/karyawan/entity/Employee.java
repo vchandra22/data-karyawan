@@ -2,31 +2,32 @@ package com.iisc.karyawan.entity;
 
 import com.iisc.karyawan.constant.Constant;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@SuperBuilder
 @Entity
 @Table(name = Constant.EMPLOYEE_TABLE)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false)
     private String id;
     
-    @Column(name = "full_name", nullable = false)
+    @Column(name = "full_name")
     private String fullName;
     
-    @Column(nullable = false)
+    @Column(name = "gender")
     private String gender;
     
-    @Column(nullable = false)
+    @Column(name = "address")
     private String address;
     
-    @Column(nullable = false)
+    @Column(name = "nationality")
     private String nationality;
 }

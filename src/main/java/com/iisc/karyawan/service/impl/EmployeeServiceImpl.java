@@ -2,11 +2,18 @@ package com.iisc.karyawan.service.impl;
 
 import com.iisc.karyawan.constant.Constant;
 import com.iisc.karyawan.dto.request.EmployeeRequest;
+import com.iisc.karyawan.dto.request.SearchEmployeeRequest;
 import com.iisc.karyawan.dto.response.EmployeeResponse;
 import com.iisc.karyawan.entity.Employee;
 import com.iisc.karyawan.repository.EmployeeRepository;
 import com.iisc.karyawan.service.EmployeeService;
+import com.iisc.karyawan.specification.EmployeeSpecification;
+import com.iisc.karyawan.util.SortUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,8 +31,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponse getAllEmployees() {
-        return null;
+    public Page<EmployeeResponse> getAllEmployees(SearchEmployeeRequest searchEmployeeRequest) {
+        Pageable employeePageable = PageRequest.of(
+                (searchEmployeeRequest.getPage() - 1),
+                searchEmployeeRequest.getSize(),
+                SortUtil.parseSortFromQueryParam(searchEmployeeRequest.getSort())
+                );
+        
+        Specification<Employee> employeeSpecification = EmployeeSpecification.getSpecification(searchEmployeeRequest);
+        Page<Employee> employeePage = employeeRepository.findAll(employeeSpecification, employeePageable);
+        
+        return employeePage.map(employee -> toEmployeeResponse(employee));
     }
 
     @Override
