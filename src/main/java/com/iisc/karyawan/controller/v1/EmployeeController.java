@@ -6,6 +6,7 @@ import com.iisc.karyawan.dto.request.SearchEmployeeRequest;
 import com.iisc.karyawan.dto.response.EmployeeResponse;
 import com.iisc.karyawan.service.EmployeeService;
 import com.iisc.karyawan.util.ResponseUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,14 +21,14 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     
     @PostMapping
-    public ResponseEntity<?> saveEmployee(@RequestBody EmployeeRequest employeeRequest) {
+    public ResponseEntity<?> saveEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
         EmployeeResponse employeeResponse = employeeService.saveEmployee(employeeRequest);
         
         return ResponseUtil.buildResponse(HttpStatus.CREATED, Constant.SUCCESS_CREATE_EMPLOYEE, employeeResponse);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable String id, @RequestBody EmployeeRequest employeeRequest) {
+    public ResponseEntity<?> updateEmployee(@PathVariable String id, @Valid @RequestBody EmployeeRequest employeeRequest) {
         EmployeeResponse employeeResponse = employeeService.updateEmployee(id, employeeRequest);
         
         return ResponseUtil.buildResponse(HttpStatus.OK, Constant.SUCCESS_UPDATE_EMPLOYEE, employeeResponse);
