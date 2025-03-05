@@ -51,6 +51,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<?> findAll(
             @RequestParam(name = "fullName", required = false) String fullName,
+            @RequestParam(name = "gender", required = false) String gender,
             @RequestParam(name = "address", required = false) String address,
             @RequestParam(name = "nationality", required = false) String nationality,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -59,6 +60,7 @@ public class EmployeeController {
     ) {
         SearchEmployeeRequest searchAttendanceRequest = SearchEmployeeRequest.builder()
                 .fullName(fullName)
+                .gender(gender)
                 .address(address)
                 .nationality(nationality)
                 .page(page)
