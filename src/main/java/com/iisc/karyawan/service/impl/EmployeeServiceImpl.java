@@ -55,7 +55,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee currentEmployee = getOne(id);
         
         currentEmployee.setId(id);
+        currentEmployee.setNik(employeeRequest.getNik());
         currentEmployee.setFullName(employeeRequest.getFullName());
+        currentEmployee.setDateOfBirth(employeeRequest.getDateOfBirth());
         currentEmployee.setGender(employeeRequest.getGender());
         currentEmployee.setAddress(employeeRequest.getAddress());
         currentEmployee.setNationality(employeeRequest.getNationality());
@@ -67,12 +69,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest) {
         Employee employee = Employee.builder()
+                .nik(employeeRequest.getNik())
                 .fullName(employeeRequest.getFullName())
+                .dateOfBirth(employeeRequest.getDateOfBirth())
                 .gender(employeeRequest.getGender())
                 .address(employeeRequest.getAddress())
                 .nationality(employeeRequest.getNationality())
                 .build();
-        
+
         employeeRepository.saveAndFlush(employee);
         return toEmployeeResponse(employee);
     }
@@ -88,7 +92,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeResponse employeeResponse = new EmployeeResponse();
         
         employeeResponse.setId(employee.getId());
+        employeeResponse.setNik(employee.getNik());
         employeeResponse.setFullName(employee.getFullName());
+        employeeResponse.setDateOfBirth(employee.getDateOfBirth());
         employeeResponse.setGender(employee.getGender());
         employeeResponse.setAddress(employee.getAddress());
         employeeResponse.setNationality(employee.getNationality());

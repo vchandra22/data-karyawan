@@ -20,6 +20,10 @@ public class EmployeeSpecification {
             public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicates = new ArrayList<>();
 
+                if (StringUtils.hasText(searchEmployeeRequest.getNik())) {
+                    predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nik")), "%" + searchEmployeeRequest.getNik().toLowerCase() + "%"));
+                }
+                
                 if (StringUtils.hasText(searchEmployeeRequest.getFullName())) {
                     predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("fullName")), "%" + searchEmployeeRequest.getFullName().toLowerCase() + "%"));
                 }

@@ -30,10 +30,12 @@ POST /api/v1/employees
 
 ```json
 {
-    "fullName": "John Doe",
-    "gender": "L",
-    "address": "123 Main Street, Malang",
-    "nationality": "Indonesia"
+   "nik": "3505180433999993",
+   "fullName": "John Doe",
+   "dateOfBirth": "2000-03-11",
+   "gender": "L",
+   "address": "103 Main Street, Malang",
+   "nationality": "Indonesia"
 }
 ```
 
@@ -41,16 +43,18 @@ POST /api/v1/employees
 
 ```json
 {
-    "status": 201,
-    "message": "Successfully created employee",
-    "data": {
-        "id": "d2bb21de-910a-437b-8159-521ecda21050",
-        "fullName": "John Doe",
-        "gender": "L",
-        "address": "123 Main Street, Malang",
-        "nationality": "Indonesia"
-    },
-    "paging": null
+   "status": 201,
+   "message": "Successfully created employee",
+   "data": {
+      "id": "6f546b22-a7c7-46f1-ba74-aabf0e639534",
+      "nik": "3505180433999993",
+      "fullName": "John Doe",
+      "dateOfBirth": "2000-03-11T00:00:00.000+00:00",
+      "gender": "L",
+      "address": "103 Main Street, Malang",
+      "nationality": "Indonesia"
+   },
+   "paging": null
 }
 ```
 
@@ -66,6 +70,7 @@ GET /api/v1/employees
 
 - `page` (optional, default: 1) - Halaman data yang ingin diambil.
 - `size` (optional, default: 10) - Jumlah data per halaman.
+- `nik` (optional) - Filter berdasarkan nik.
 - `fullName` (optional) - Filter berdasarkan nama lengkap.
 - `address` (optional) - Filter berdasarkan alamat.
 - `gender` (optional) - Filter berdasarkan jenis kelamin.
@@ -75,23 +80,25 @@ GET /api/v1/employees
 
 ```json
 {
-  "status": 200,
-  "message": "Successfully get all employees",
-  "data": [
-    {
-      "id": "d2bb21de-910a-437b-8159-521ecda21050",
-      "fullName": "John Doe",
-      "gender": "L",
-      "address": "123 Main Street, Malang",
-      "nationality": "Indonesia"
-    }
-  ],
-  "paging": {
-    "page": 1,
-    "size": 10,
-    "totalPage": 1,
-    "totalItems": 1
-  }
+   "status": 200,
+   "message": "Successfully get all employees",
+   "data": [
+      {
+         "id": "6f546b22-a7c7-46f1-ba74-aabf0e639534",
+         "nik": "3505180433999993",
+         "fullName": "John Doe",
+         "dateOfBirth": "2000-03-11",
+         "gender": "L",
+         "address": "103 Main Street, Malang",
+         "nationality": "Indonesia"
+      }
+   ],
+   "paging": {
+      "page": 1,
+      "size": 10,
+      "totalPage": 1,
+      "totalItems": 1
+   }
 }
 ```
 
@@ -111,16 +118,18 @@ GET /api/v1/employees/{id}
 
 ```json
 {
-  "status": 200,
-  "message": "Successfully get employee",
-  "data": {
-    "id": "d2bb21de-910a-437b-8159-521ecda21050",
-    "fullName": "John Doe",
-    "gender": "L",
-    "address": "123 Main Street, Malang",
-    "nationality": "Indonesia"
-  },
-  "paging": null
+   "status": 200,
+   "message": "Successfully get all employees",
+   "data": {
+      "id": "6f546b22-a7c7-46f1-ba74-aabf0e639534",
+      "nik": "3505180433999993",
+      "fullName": "John Doe",
+      "dateOfBirth": "2000-03-11",
+      "gender": "L",
+      "address": "103 Main Street, Malang",
+      "nationality": "Indonesia"
+   },
+   "paging": null
 }
 ```
 
@@ -140,27 +149,31 @@ PUT /api/v1/employees/{id}
 
 ```json
 {
-    "fullName": "John Doe",
-    "gender": "L",
-    "address": "103 Main Street, Blitar",
-    "nationality": "Indonesia"
-}
+   "nik": "3505180433999995",
+   "fullName": "John Doe",
+   "dateOfBirth": "2000-03-12",
+   "gender": "L",
+   "address": "103 Main Street, Blitar",
+   "nationality": "Indonesia"
+} 
 ```
 
 **Response:**
 
 ```json
 {
-  "status": 200,
-  "message": "Successfully updated employee",
-  "data": {
-    "id": "d2bb21de-910a-437b-8159-521ecda21050",
-    "fullName": "John Doe",
-    "gender": "L",
-    "address": "103 Main Street, Blitar",
-    "nationality": "Indonesia"
-  },
-  "paging": null
+   "status": 200,
+   "message": "Successfully updated employee",
+   "data": {
+      "id": "6f546b22-a7c7-46f1-ba74-aabf0e639534",
+      "nik": "3505180433999995",
+      "fullName": "John Doe",
+      "dateOfBirth": "2000-03-12T00:00:00.000+00:00",
+      "gender": "L",
+      "address": "103 Main Street, Blitar",
+      "nationality": "Indonesia"
+   },
+   "paging": null
 }
 ```
 
